@@ -1,330 +1,630 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>nyom nyam 8</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nyom nyam 8</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-<style>
-  :root{
-    --ink:      #123230;
-    --bg:       #e8f3ee;
-    --panel:    #ffffff;
-    --accent:   #2f8f7d;
-    --blush:    #5fa8c9;
-    --gold:     #c9a24d;
-    --line:     rgba(18,50,48,.14);
-    --muted:    #3f6b60;
+    <style>
+      :root {
+        --ink: #123230;
+        --bg: #e8f3ee;
+        --panel: #ffffff;
+        --accent: #2f8f7d;
+        --blush: #5fa8c9;
+        --gold: #c9a24d;
+        --line: rgba(18, 50, 48, 0.14);
+        --muted: #3f6b60;
 
-    --font-display: 'Fraunces', serif;
-    --font-body: 'Inter', sans-serif;
-  }
+        --font-display: "Fraunces", serif;
+        --font-body: "Inter", sans-serif;
+      }
 
-  *{ box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:var(--font-body);
-    line-height:1.6;
-  }
-  a{ color:var(--accent); text-decoration:none; }
-  a:hover{ color:var(--ink); }
-  img{ max-width:100%; display:block; }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font-body);
+        line-height: 1.6;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--ink);
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
 
-  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+      .wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
 
-  .stars{ position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none; }
-  .stars span{
-    position:absolute; width:3px; height:3px; border-radius:50%;
-    background:var(--gold); opacity:.35;
-    animation:twinkle 4s ease-in-out infinite;
-  }
-  @keyframes twinkle{ 0%,100%{opacity:.15; transform:scale(.8)} 50%{opacity:.6; transform:scale(1.1)} }
+      .stars {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .stars span {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--gold);
+        opacity: 0.35;
+        animation: twinkle 4s ease-in-out infinite;
+      }
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.15;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 0.6;
+          transform: scale(1.1);
+        }
+      }
 
-  header{
-    position:sticky; top:0; z-index:10;
-    background:rgba(238,241,251,.85); backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav{ display:flex; align-items:center; justify-content:space-between; padding:18px 24px; }
-  .brand{ font-family:var(--font-display); font-size:20px; font-weight:500; letter-spacing:.01em; }
-  .navlinks{ display:flex; gap:28px; font-size:14px; }
-  .navlinks a{ color:var(--muted); }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(238, 241, 251, 0.85);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 24px;
+      }
+      .brand {
+        font-family: var(--font-display);
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+      }
+      .navlinks {
+        display: flex;
+        gap: 28px;
+        font-size: 14px;
+      }
+      .navlinks a {
+        color: var(--muted);
+      }
 
-  .hero{ padding:100px 24px 80px; text-align:center; position:relative; }
-  .hero .eyebrow{
-    font-size:13px; letter-spacing:.14em; text-transform:uppercase;
-    color:var(--accent); margin-bottom:18px;
-  }
-  .hero h1{
-    font-family:var(--font-display); font-weight:400; font-style:italic;
-    font-size:clamp(40px,7vw,72px); line-height:1.05; margin:0 0 22px;
-  }
-  .hero p{ max-width:520px; margin:0 auto; color:var(--muted); font-size:17px; }
-  .wing-divider{ width:120px; margin:38px auto 0; opacity:.8; }
+      .hero {
+        padding: 100px 24px 80px;
+        text-align: center;
+        position: relative;
+      }
+      .hero .eyebrow {
+        font-size: 13px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 18px;
+      }
+      .hero h1 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-style: italic;
+        font-size: clamp(40px, 7vw, 72px);
+        line-height: 1.05;
+        margin: 0 0 22px;
+      }
+      .hero p {
+        max-width: 520px;
+        margin: 0 auto;
+        color: var(--muted);
+        font-size: 17px;
+      }
+      .wing-divider {
+        width: 120px;
+        margin: 38px auto 0;
+        opacity: 0.8;
+      }
 
-  section{ padding:70px 0; border-top:1px solid var(--line); }
-  h2{ font-family:var(--font-display); font-weight:400; font-size:32px; margin:0 0 28px; }
+      section {
+        padding: 70px 0;
+        border-top: 1px solid var(--line);
+      }
+      h2 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: 32px;
+        margin: 0 0 28px;
+      }
 
-  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
-  .about-grid p{ color:var(--muted); margin:0 0 16px; }
-  .facts{ font-size:14px; }
-  .facts div{ display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--line); }
-  .facts span:first-child{ color:var(--muted); }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+        align-items: start;
+      }
+      .about-grid p {
+        color: var(--muted);
+        margin: 0 0 16px;
+      }
+      .facts {
+        font-size: 14px;
+      }
+      .facts div {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .facts span:first-child {
+        color: var(--muted);
+      }
 
-  .gallery{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
-  .tile{
-    background:var(--panel); border-radius:14px; overflow:hidden;
-    border:1px solid var(--line);
-    transition:transform .25s ease, box-shadow .25s ease;
-  }
-  .tile:hover{ transform:translateY(-4px); box-shadow:0 18px 34px -18px rgba(27,36,64,.35); }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+      .tile {
+        background: var(--panel);
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        cursor: pointer;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .tile:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 34px -18px rgba(27, 36, 64, 0.35);
+      }
 
-  /* uploadable image frame */
-  .tile .frame{
-    aspect-ratio:3/4;
-    background:linear-gradient(160deg,var(--blush),var(--accent));
-    background-size:cover;
-    background-position:center;
-    position:relative;
-    cursor:pointer;
-  }
-  .tile .frame input[type="file"]{
-    position:absolute; inset:0; width:100%; height:100%;
-    opacity:0; cursor:pointer;
-  }
-  .tile .frame .upload-hint{
-    position:absolute; inset:0;
-    display:flex; align-items:center; justify-content:center;
-    flex-direction:column; gap:8px;
-    background:rgba(18,50,48,0);
-    color:#fff; font-size:12px; letter-spacing:.03em;
-    opacity:0; transition:opacity .2s ease, background .2s ease;
-    pointer-events:none; text-align:center; padding:0 12px;
-  }
-  .tile .frame:hover .upload-hint{ opacity:1; background:rgba(18,50,48,.45); }
-  .tile .frame .upload-hint svg{ width:22px; height:22px; }
+      /* image frame — sourced from /images, set per item in WORKS */
+      .tile .frame {
+        aspect-ratio: 3/4;
+        background: linear-gradient(160deg, var(--blush), var(--accent));
+        background-size: cover;
+        background-position: center;
+      }
 
-  .tile .meta{ padding:14px 16px 16px; cursor:pointer; }
-  .tile .meta .cat{ font-size:12px; color:var(--accent); letter-spacing:.04em; text-transform:uppercase; }
-  .tile .meta h3{ font-family:var(--font-display); font-weight:500; font-size:17px; margin:6px 0 4px; }
-  .tile .meta .price{ font-size:14px; color:var(--muted); }
+      .tile .meta {
+        padding: 14px 16px 16px;
+      }
+      .tile .meta .cat {
+        font-size: 12px;
+        color: var(--accent);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .tile .meta h3 {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 17px;
+        margin: 6px 0 4px;
+      }
+      .tile .meta .price {
+        font-size: 14px;
+        color: var(--muted);
+      }
 
-  footer{ border-top:1px solid var(--line); padding:34px 24px; text-align:center; font-size:13px; color:var(--muted); }
+      /* ---------- pagination ---------- */
+      .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 36px;
+      }
+      .pagination button {
+        font-family: var(--font-body);
+        font-size: 14px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        color: var(--ink);
+        border-radius: 8px;
+        padding: 8px 14px;
+        cursor: pointer;
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          border-color 0.15s ease;
+      }
+      .pagination button:hover:not(:disabled) {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .pagination button.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      .pagination button:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
 
-  /* ---------- lightbox ---------- */
-  .lightbox{
-    position:fixed; inset:0; z-index:100;
-    background:rgba(18,50,48,.72);
-    display:none; align-items:center; justify-content:center;
-    padding:32px;
-  }
-  .lightbox.open{ display:flex; }
-  .lightbox-inner{
-    background:var(--panel); border-radius:16px; overflow:hidden;
-    max-width:520px; width:100%; max-height:90vh;
-    display:flex; flex-direction:column;
-  }
-  .lightbox-img{
-    aspect-ratio:3/4; width:100%;
-    background-size:cover; background-position:center;
-    background:linear-gradient(160deg,var(--blush),var(--accent));
-  }
-  .lightbox-meta{ padding:20px 22px 24px; }
-  .lightbox-meta .cat{ font-size:12px; color:var(--accent); letter-spacing:.04em; text-transform:uppercase; }
-  .lightbox-meta h3{ font-family:var(--font-display); font-weight:500; font-size:22px; margin:8px 0 6px; }
-  .lightbox-meta .price{ font-size:15px; color:var(--muted); }
-  .lightbox-close{
-    position:absolute; top:22px; right:22px;
-    width:36px; height:36px; border-radius:50%;
-    background:rgba(255,255,255,.9); border:none; cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    font-size:18px; color:var(--ink);
-  }
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 34px 24px;
+        text-align: center;
+        font-size: 13px;
+        color: var(--muted);
+      }
 
-  @media (max-width:760px){
-    .about-grid{ grid-template-columns:1fr; }
-    .gallery{ grid-template-columns:repeat(2,1fr); }
-    .navlinks{ display:none; }
-  }
-</style>
-</head>
-<body>
+      /* ---------- lightbox ---------- */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: rgba(18, 50, 48, 0.72);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 32px;
+      }
+      .lightbox.open {
+        display: flex;
+      }
+      .lightbox-inner {
+        background: var(--panel);
+        border-radius: 16px;
+        overflow: hidden;
+        max-width: 520px;
+        width: 100%;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .lightbox-img {
+        aspect-ratio: 3/4;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        background: linear-gradient(160deg, var(--blush), var(--accent));
+      }
+      .lightbox-meta {
+        padding: 20px 22px 24px;
+      }
+      .lightbox-meta .cat {
+        font-size: 12px;
+        color: var(--accent);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .lightbox-meta h3 {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 22px;
+        margin: 8px 0 6px;
+      }
+      .lightbox-meta .price {
+        font-size: 15px;
+        color: var(--muted);
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 22px;
+        right: 22px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        color: var(--ink);
+      }
 
-<div class="stars" id="stars"></div>
+      @media (max-width: 760px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .gallery {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .navlinks {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stars" id="stars"></div>
 
-<header>
-  <div class="nav wrap">
-    <div class="brand">nyom_nyam_8</div>
-    <nav class="navlinks">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
+    <header>
+      <div class="nav wrap">
+        <div class="brand">nyom_nyam_8</div>
+        <nav class="navlinks">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
 
-<section class="hero">
-  <div class="wrap">
-    <div class="eyebrow">Prints · Stickers · Pins</div>
-    <h1>nyom nyam 8</h1>
-    <p>Art Portfolio</p>
-    <svg class="wing-divider" viewBox="0 0 120 40" fill="none">
-      <path d="M60 34 C40 10, 10 8, 2 4" stroke="#2f8f7d" stroke-width="2" stroke-linecap="round"/>
-      <path d="M60 34 C80 10, 110 8, 118 4" stroke="#2f8f7d" stroke-width="2" stroke-linecap="round"/>
-      <circle cx="60" cy="34" r="3" fill="#c9a24d"/>
-    </svg>
-  </div>
-</section>
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">Prints · Stickers · Pins</div>
+        <h1>nyom nyam 8</h1>
+        <p>Art Portfolio</p>
+        <svg class="wing-divider" viewBox="0 0 120 40" fill="none">
+          <path
+            d="M60 34 C40 10, 10 8, 2 4"
+            stroke="#2f8f7d"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+          <path
+            d="M60 34 C80 10, 110 8, 118 4"
+            stroke="#2f8f7d"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+          <circle cx="60" cy="34" r="3" fill="#c9a24d" />
+        </svg>
+      </div>
+    </section>
 
-<section id="about">
-  <div class="wrap about-grid">
-    <div>
-      <h2>About my works</h2>
-      <p>All my drawings are digital, and consists of mostly fanarts.</p>
-      <p>If you have any question, please don't hesitate to contact me via email or Instagram (nyom_nyam_8) ^^</p>
-    </div>
-    <div class="facts">
-      <div><span>Based in</span><span>Sydney, Australia</span></div>
-    </div>
-  </div>
-</section>
+    <section id="about">
+      <div class="wrap about-grid">
+        <div>
+          <h2>About my works</h2>
+          <p>All my drawings are digital, and consists of mostly fanarts.</p>
+          <p>
+            If you have any question, please don't hesitate to contact me via
+            email or Instagram (nyom_nyam_8) ^^
+          </p>
+        </div>
+        <div class="facts">
+          <div><span>Based in</span><span>Sydney, Australia</span></div>
+        </div>
+      </div>
+    </section>
 
-<!-- ============================================================
+    <!-- ============================================================
      WORK / GALLERY — tiles are generated from the WORKS list in
-     the <script> at the bottom. Click any tile's image area to
-     upload a picture from your computer for that piece.
+     the <script> at the bottom, 6 per page. Each item's "img"
+     points to a file in the /images folder next to this HTML file.
      ============================================================ -->
-<section id="work">
-  <div class="wrap">
-    <h2>Recent work</h2>
-    <div class="gallery" id="gallery"></div>
-  </div>
-</section>
+    <section id="work">
+      <div class="wrap">
+        <h2>Recent work</h2>
+        <div class="gallery" id="gallery"></div>
+        <div class="pagination" id="pagination"></div>
+      </div>
+    </section>
 
-<!-- click a card's title/price to open the full image here -->
-<div class="lightbox" id="lightbox">
-  <div class="lightbox-inner">
-    <div class="lightbox-img" id="lightbox-img"></div>
-    <div class="lightbox-meta">
-      <div class="cat" id="lightbox-cat"></div>
-      <h3 id="lightbox-title"></h3>
-      <div class="price" id="lightbox-price"></div>
+    <!-- click a card to open the full image here -->
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-inner">
+        <div class="lightbox-img" id="lightbox-img"></div>
+        <div class="lightbox-meta">
+          <div class="cat" id="lightbox-cat"></div>
+          <h3 id="lightbox-title"></h3>
+          <div class="price" id="lightbox-price"></div>
+        </div>
+      </div>
+      <button class="lightbox-close" id="lightbox-close">&times;</button>
     </div>
-  </div>
-  <button class="lightbox-close" id="lightbox-close">&times;</button>
-</div>
 
-<section id="contact">
-  <div class="wrap" style="text-align:center">
-    <h2>Get in touch</h2>
-    <p style="color:var(--muted);max-width:420px;margin:0 auto 20px">
-      Commissions open a few times a year — the fastest way to reach
-      me is on Instagram, or by email for wholesale enquiries.
-    </p>
-    <p><a href="mailto:hello@wingsong.studio">hello@wingsong.studio</a> &nbsp;·&nbsp; <a href="#">@wingsong.studio</a></p>
-  </div>
-</section>
+    <section id="contact">
+      <div class="wrap" style="text-align: center">
+        <h2>Get in touch</h2>
+        <p style="color: var(--muted); max-width: 420px; margin: 0 auto 20px">
+          Commissions open a few times a year — the fastest way to reach me is
+          on Instagram, or by email for wholesale enquiries.
+        </p>
+        <p>
+          <a href="mailto:hello@wingsong.studio">hello@wingsong.studio</a>
+          &nbsp;·&nbsp; <a href="#">@wingsong.studio</a>
+        </p>
+      </div>
+    </section>
 
-<footer>
-  wingsong studio — catalogue 2026
-</footer>
+    <footer>wingsong studio — catalogue 2026</footer>
 
-<script>
-  /* ============================================================
+    <script>
+      /* ============================================================
      EDIT YOUR WORK HERE
      Add, remove, or change an object in this list to update the
      gallery grid above — the layout code doesn't need to change.
      ============================================================ */
-  const WORKS = [
-    { title: "Feather Study I",     cat: "Prints",   price: "$28" },
-    { title: "Margin Notes Sheet",  cat: "Stickers", price: "$9"  },
-    { title: "Starcharm — Small",   cat: "Charms",   price: "$16" },
-    { title: "Feather Study II",    cat: "Prints",   price: "$28" },
-    { title: "Night Sky Keyring",   cat: "Charms",   price: "$14" },
-    { title: "Constellation Sheet", cat: "Stickers", price: "$9"  },
-  ];
+      const WORKS = [
+        {
+          title: "Digital Art",
+          cat: "Prints",
+          price: "Jaehee (NCT WISH)",
+          img: "images//IMG_20260328_224409_514.jpg",
+        },
+        {
+          title: "Digital Art",
+          cat: "Prints",
+          price: "Jaehee (NCT WISH)",
+          img: "images//retouch_2026072923350792.jpg",
+        },
+        {
+          title: "Digital Art",
+          cat: "Prints",
+          price: "Joker (Persona 5)",
+          img: "images//1.png",
+        },
+        {
+          title: "Digital Art",
+          cat: "Prints",
+          price: "Yushi (NCT Wish)",
+          img: "images//IMG_20260609_210231_802.jpg",
+        },
+        {
+          title: "Digital Art",
+          cat: "Prints",
+          price: "Haruhi (OHSC)",
+          img: "images/OuranHostClub_Haruhi.png",
+        },
+        {
+          title: "Digital Art",
+          cat: "Rrints",
+          price: "Tamaki (OHSC)",
+          img: "images/OuranHostClub_Tamaki.png",
+        },
+        {
+          title: "Digital Art",
+          cat: "Prints",
+          price: "Yu (Persona 4)",
+          img: "images//Persona4_Yu.png",
+        },
+        {
+          title: "Digital Art",
+          cat: "Prints",
+          price: "Yosuke (Persona 4)",
+          img: "images//619380853_919272897377102_5118489064451286186_n.jpg",
+        },
+        {
+          title: "Digital Art",
+          cat: "Prints",
+          price: "Leon Kennedy (RE2)",
+          img: "images//ResidentEvil2_Leon.png",
+        },
+        {
+          title: "Digital Art",
+          cat: "Prints",
+          price: "Jason Todd",
+          img: "images//IMG_20260709_213155_138.jpg",
+        },
+      ];
 
-  const uploadIcon = `
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <path d="M12 16V4M12 4L7 9M12 4l5 5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>`;
+      const PAGE_SIZE = 6;
+      let currentPage = 1;
+      const totalPages = Math.max(1, Math.ceil(WORKS.length / PAGE_SIZE));
 
-  const gallery = document.getElementById('gallery');
+      const gallery = document.getElementById("gallery");
+      const paginationEl = document.getElementById("pagination");
 
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const lightboxCat = document.getElementById('lightbox-cat');
-  const lightboxTitle = document.getElementById('lightbox-title');
-  const lightboxPrice = document.getElementById('lightbox-price');
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const lightboxCat = document.getElementById("lightbox-cat");
+      const lightboxTitle = document.getElementById("lightbox-title");
+      const lightboxPrice = document.getElementById("lightbox-price");
 
-  document.getElementById('lightbox-close').addEventListener('click', () => {
-    lightbox.classList.remove('open');
-  });
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) lightbox.classList.remove('open');
-  });
+      document
+        .getElementById("lightbox-close")
+        .addEventListener("click", () => {
+          lightbox.classList.remove("open");
+        });
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) lightbox.classList.remove("open");
+      });
 
-  WORKS.forEach((item, i) => {
-    const tile = document.createElement('div');
-    tile.className = 'tile';
-    tile.innerHTML = `
-      <div class="frame" id="frame-${i}">
-        <input type="file" accept="image/*" id="file-${i}">
-        <div class="upload-hint">
-          ${uploadIcon}
-          <span>Click to upload image</span>
-        </div>
-      </div>
+      function goToPage(page) {
+        currentPage = page;
+        renderGallery(currentPage);
+        const workSection = document.getElementById("work");
+        window.scrollTo({
+          top: workSection.offsetTop - 80,
+          behavior: "smooth",
+        });
+      }
+
+      function renderPagination() {
+        paginationEl.innerHTML = "";
+        if (totalPages <= 1) return;
+
+        const prev = document.createElement("button");
+        prev.textContent = "‹ Prev";
+        prev.disabled = currentPage === 1;
+        prev.addEventListener("click", () => goToPage(currentPage - 1));
+        paginationEl.appendChild(prev);
+
+        for (let p = 1; p <= totalPages; p++) {
+          const btn = document.createElement("button");
+          btn.textContent = p;
+          if (p === currentPage) btn.classList.add("active");
+          btn.addEventListener("click", () => goToPage(p));
+          paginationEl.appendChild(btn);
+        }
+
+        const next = document.createElement("button");
+        next.textContent = "Next ›";
+        next.disabled = currentPage === totalPages;
+        next.addEventListener("click", () => goToPage(currentPage + 1));
+        paginationEl.appendChild(next);
+      }
+
+      function renderGallery(page) {
+        gallery.innerHTML = "";
+        const start = (page - 1) * PAGE_SIZE;
+        const pageItems = WORKS.slice(start, start + PAGE_SIZE);
+
+        pageItems.forEach((item, idx) => {
+          const i = start + idx; // global index — keeps ids unique across pages
+          const tile = document.createElement("div");
+          tile.className = "tile";
+          tile.innerHTML = `
+      <div class="frame" id="frame-${i}" style="background-image:url('${item.img}')"></div>
       <div class="meta" id="meta-${i}">
         <div class="cat">${item.cat}</div>
         <h3>${item.title}</h3>
         <div class="price">${item.price}</div>
       </div>
     `;
-    gallery.appendChild(tile);
+          gallery.appendChild(tile);
 
-    const frame = tile.querySelector(`#frame-${i}`);
-    const input = tile.querySelector(`#file-${i}`);
-    const meta = tile.querySelector(`#meta-${i}`);
+          const frame = tile.querySelector(`#frame-${i}`);
 
-    input.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (ev) => {
-        frame.style.backgroundImage = `url(${ev.target.result})`;
-      };
-      reader.readAsDataURL(file);
-    });
+          // if the file is missing, fall back to the gradient placeholder
+          const probe = new Image();
+          probe.onerror = () => {
+            frame.style.backgroundImage = "";
+          };
+          probe.src = item.img;
 
-    // click the description to view the full image + details
-    meta.addEventListener('click', () => {
-      const bg = frame.style.backgroundImage;
-      lightboxImg.style.backgroundImage = bg || '';
-      lightboxCat.textContent = item.cat;
-      lightboxTitle.textContent = item.title;
-      lightboxPrice.textContent = item.price;
-      lightbox.classList.add('open');
-    });
-  });
+          // click anywhere on the card to view the full image + details
+          tile.addEventListener("click", () => {
+            lightboxImg.style.backgroundImage = `url('${item.img}')`;
+            lightboxCat.textContent = item.cat;
+            lightboxTitle.textContent = item.title;
+            lightboxPrice.textContent = item.price;
+            lightbox.classList.add("open");
+          });
+        });
 
-  // faint scattered stars in the background
-  const starsEl = document.getElementById('stars');
-  for (let i = 0; i < 40; i++) {
-    const s = document.createElement('span');
-    s.style.left = Math.random() * 100 + '%';
-    s.style.top = Math.random() * 100 + '%';
-    s.style.animationDelay = (Math.random() * 4) + 's';
-    starsEl.appendChild(s);
-  }
-</script>
+        renderPagination();
+      }
 
-</body>
+      renderGallery(currentPage);
+
+      // faint scattered stars in the background
+      const starsEl = document.getElementById("stars");
+      for (let i = 0; i < 40; i++) {
+        const s = document.createElement("span");
+        s.style.left = Math.random() * 100 + "%";
+        s.style.top = Math.random() * 100 + "%";
+        s.style.animationDelay = Math.random() * 4 + "s";
+        starsEl.appendChild(s);
+      }
+    </script>
+  </body>
 </html>
